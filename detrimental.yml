@@ -7,10 +7,10 @@
   tasks:
     - name: 1.0 | Set SSH Idle Timeout Interval | Deduplicate values from `/etc/ssh/sshd_config`
         lineinfile:
-        path: /etc/ssh/sshd_config
-        create: false
-        regexp: (?i)^\s*ClientAliveInterval\s+
-        state: absent
+          path: /etc/ssh/sshd_config
+          create: false
+          regexp: (?i)^\s*ClientAliveInterval\s+
+          state: absent
       tags:
         - sshd_set_idle_timeout
         - medium_severity
@@ -32,12 +32,12 @@
 
     - name: 2.0 | Set SSH Idle Timeout Interval | Insert incorrect line to `/etc/ssh/sshd_config`
         lineinfile:
-        path: /etc/ssh/sshd_config
-        create: true
-        line: ClientAliveInterval {{ sshd_idle_timeout_value }}
-        state: present
-        insertbefore: ^[#\s]*Match
-        validate: /usr/sbin/sshd -t -f %s
+          path: /etc/ssh/sshd_config
+          create: true
+          line: ClientAliveInterval {{ sshd_idle_timeout_value }}
+          state: present
+          insertbefore: ^[#\s]*Match
+          validate: /usr/sbin/sshd -t -f %s
       tags:
         - incorrect
         - sshd_set_idle_timeout
