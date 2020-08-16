@@ -1,6 +1,6 @@
 ---
 # This playbook causes OpenSCAP rule `xccdf_org.ssgproject.content_rule_sshd_set_idle_timeout` to fail
-- hosts: tag_Service_testing_machine
+- hosts: tag_Name_managed_2
   become: true
   vars:
     sshd_idle_timeout_value: !!str 0
