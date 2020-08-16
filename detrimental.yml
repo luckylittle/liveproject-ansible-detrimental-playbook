@@ -6,7 +6,7 @@
     sshd_idle_timeout_value: !!str 0
   tasks:
     - name: 1.0 | Set SSH Idle Timeout Interval | Deduplicate values from `/etc/ssh/sshd_config`
-        lineinfile:
+      lineinfile:
         path: /etc/ssh/sshd_config
         create: false
         regexp: (?i)^\s*ClientAliveInterval\s+
@@ -31,7 +31,7 @@
         - CJIS-5.5.6
 
     - name: 2.0 | Set SSH Idle Timeout Interval | Insert incorrect line to `/etc/ssh/sshd_config`
-        lineinfile:
+      lineinfile:
         path: /etc/ssh/sshd_config
         create: true
         line: ClientAliveInterval {{ sshd_idle_timeout_value }}
